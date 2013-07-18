@@ -1,7 +1,9 @@
-//
-   Created with JetBrains WebStorm.
-   User: maniacneron
-   Date: 30/06/13
-   Time: 7:39 PM
-   To change this template use File | Settings | File Templates.
+extends layout/default
 
+block append head
+    script.
+        alert('Welcome to using template page');
+
+block main
+    div#mainContent(style="border:1")
+    include loops

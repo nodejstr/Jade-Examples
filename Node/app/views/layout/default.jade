@@ -1,14 +1,15 @@
 !!! 5
-html
-  include head
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', itemtype='http://schema.org/Product')
+  block head
+    include head
   body
-    include header
-    div.container-fluid
-        div.row(style="margin-top:60px")
-        div.row-fluid
-            div.span8.offset2
-                block main
-            div.span2
-                block right-sidebar
+    .wrapper
+      include header
+      .container
+        .main-content
+          .main-head
+          block main
+      .push
+  block footer
     include footer
     include foot

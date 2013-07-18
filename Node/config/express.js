@@ -1,6 +1,6 @@
 var express = require('express')
     , viewHelpers = require('./midllewares/view')
-
+    , pkg = require('../package.json')
 module.exports = function (app, config) {
     app.set('showStackError', true)
     app.use(express.compress({
@@ -14,6 +14,10 @@ module.exports = function (app, config) {
     app.set('views', config.root + '/app/views')
     app.set('view engine', 'jade')
     app.configure(function () {
+        app.use(function (req, res, next) {
+            res.locals.pkg = pkg
+            next()
+        })
         app.use(viewHelpers(config))
         app.use(express.cookieParser())
         app.use(express.methodOverride())

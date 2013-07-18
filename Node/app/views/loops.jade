@@ -5,3 +5,12 @@
    Time: 7:40 PM
    To change this template use File | Settings | File Templates.
 
+div#loops
+
+    ul #{listTitle}
+    for player in players
+        if(player.number ==12)
+            li
+                strong #{player.number +"-"+ player.name}
+        else
+            li #{player.number +"-"+ player.name}
