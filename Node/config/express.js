@@ -23,6 +23,7 @@ module.exports = function (app, config) {
         app.use(express.methodOverride())
         app.use(express.bodyParser())
         app.use(express.favicon())
+        app.use(express.session({ secret: "nodejstr" }));
         app.use(app.router)
         app.use(function (err, req, res, next) {
             if (~err.message.indexOf('not found')) return next()

@@ -1,0 +1,46 @@
+extends layout/default
+
+
+block main
+    div#mainContent(style="border:1")
+        span
+            Meyve Adı:
+        input(id="txtFruit", name="fruit")
+        button(id="btnEkle",type="button") Ekle
+
+
+    div#fruits
+        include partialListe
+
+block append footer
+    script.
+        $(function(){
+            $('#btnEkle').click(function(){
+
+                  ajaxCall();
+            });
+            $('#txtFruit').keyup(function(event){
+                if(event.keyCode == 13){
+                       ajaxCall();
+                    }
+            });
+            function ajaxCall()
+            {
+              $.ajax({
+                  type: 'post',
+                  dataType:'html',
+                  url: '/addFruit',
+                  data: {fruit:$('#txtFruit').val()},
+                  success: function (data) {
+
+                         $('#fruits').html(data);
+                         $('#txtFruit').val('');
+                  },
+                  error: function (data) {
+
+                      if (data.error)
+                          console.log(data)
+                  }
+              })
+            }
+         });
